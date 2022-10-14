@@ -1,0 +1,4 @@
+test=['lmao']   
+
+for languag in test:
+  print(languag)
