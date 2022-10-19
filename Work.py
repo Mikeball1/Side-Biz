@@ -22,12 +22,13 @@ def sure(function):
   ensure()
 
 def sure2(product):
- product
+ addition=input(product)
  ensure()   
  while yesorno=='n':
-  product
+  addition=input(product)
   ensure()
- return product
+ return addition
+
 
 #Offers options to choose what the user would like to do
 def which():
@@ -42,9 +43,10 @@ match guide:
   #------------------------------------------------------------------------------------------------------------
  case "1": 
   #Takes the user input of the item,cost and quantity
-  newitem=input("Input New item\n")
-  newcost=input("Input cost of Items\n")
-  quantity=int(input('Input the quantity of Items\n'))
+  #newitem=input("Input New item\n")
+  newitem=sure2("Input New item\n")
+  newcost=sure2("Input cost of Items\n")
+  quantity=sure2('Input the quantity of Items\n')
   #For the amount of values between 1 and the number of rows, execute the blocks within
   #the for loop while increasing 'i'
   for i in range (1,rows+2):
@@ -66,9 +68,9 @@ match guide:
 #----------------------------------------------------------------------------------------------------------
  case "3": 
   
-  sale=input(str('What is the name of the sold product\n'))
-  salerev=input(str('What the revenue of the sale\n'))
-  salefee=input(str('What is the fee of the sale\n'))
+  sale=sure2(input('What is the name of the sold product\n'))
+  salerev=sure2(input(str('What the revenue of the sale\n')))
+  salefee=sure2(input(str('What is the fee of the sale\n')))
   #increase the value of i so long as it is inbetween 1 and the number of row +1
   #also only runs the for loops for the number of time between the 1 and row+1
   for i in range (1,rows+1):

@@ -14,6 +14,7 @@ def question2():
     suck=input("zaza or lean (y/n)\n")
     return suck
 
+
 def sure(function):
  function()
  ensure()   

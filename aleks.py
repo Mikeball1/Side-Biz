@@ -1,29 +1,25 @@
-def ensure():
- global yesorno
- yesorno=input(str("Are you sure.(Y/N)\n"))
- while yesorno!='y' and yesorno!='n':
-  print("Incorrect Input")
-  yesorno=input("Are you sure\n")
+from tkinter import Y
 
-def question():
-    global smth
-    smth=input("nazi or soldier\n")
-    return smth
-def question2():
-    global suck
-    suck=input("candy or ice cream\n")
-    return suck
 
-question()
-ensure()
-while yesorno=='n':
-  question()
-  ensure()
-  print("the thing enter here")
+def surey(product):
+ product
+ yesorno=input("y or n")  
+ product
 
-question2()
-ensure()
-while yesorno=='n':
-  question2()
-  ensure()
-  print("the thing enter here")
+def sure2(pro):
+ print(pro)
+ print(pro)
+ 
+sure2(("wagwan"))
+'''
+ yesorno=input("y or n")
+ while yesorno=='n':
+  pro
+ '''
+'''
+ while yesorno=='n':
+  product
+  yesorno=input("y or n")  
+ return product
+ '''
+#smth=sure2(input(str("i dont knwo put in smth ramndon")),input(str("i dont knwo put in smth ramndon")))
