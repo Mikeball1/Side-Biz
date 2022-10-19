@@ -35,6 +35,10 @@ def which():
     global guide
     guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Add Cost\n3. Profit\n4. Payout Per Person\n5. Check Total Cost\n"))
 #Asks the user to double check if they made the right decision
+'''
+restart='yes'
+while restart=='yes':
+  '''
 
 sure(which)
 
@@ -68,9 +72,9 @@ match guide:
 #----------------------------------------------------------------------------------------------------------
  case "3": 
   
-  sale=sure2(input('What is the name of the sold product\n'))
-  salerev=sure2(input(str('What the revenue of the sale\n')))
-  salefee=sure2(input(str('What is the fee of the sale\n')))
+  sale=sure2('What is the name of the sold product\n')
+  salerev=sure2('What the revenue of the sale\n')
+  salefee=sure2('What is the fee of the sale\n')
   #increase the value of i so long as it is inbetween 1 and the number of row +1
   #also only runs the for loops for the number of time between the 1 and row+1
   for i in range (1,rows+1):

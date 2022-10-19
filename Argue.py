@@ -1,3 +1,6 @@
+import os
+import sys
+
 def ensure():
  global yesorno
  yesorno=input(str("Are you sure.(Y/N)\n"))
@@ -24,4 +27,6 @@ def sure(function):
   print("the thing enter here")
 sure(question)
 sure(question2)
+
+
 
