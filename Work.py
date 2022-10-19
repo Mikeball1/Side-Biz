@@ -1,29 +1,45 @@
 import openpyxl
+import datetime
 wb=openpyxl.load_workbook("C:\\Users\\Lopez\\OneDrive\\WIP\\Test Excel.xlsx")
 sh1=wb['Sheet1']
+sh2=wb['Daily Amazon']
 rows=sh1.max_row
-print(rows)
+rows2=sh2.max_row
+print(rows2)
 
-#Offers options to choose what the user would like to do
-def which():
-    global guide
-    guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Add Cost\n3. Profit\n4.Payout Per Person\n5. Check Total Cost\n"))
-#Asks the user to double check if they made the right decision
 def ensure():
  global yesorno
  yesorno=input(str("Are you sure.(Y/N)\n"))
  while yesorno!='y' and yesorno!='n':
   print("Incorrect Input")
-  yesorno=input("Are you sure\n").lower
+  yesorno=input("Are you sure\n")
 
-which()
-ensure()
-while yesorno=='n':
-    which()
-    ensure()
+def sure(function):
+ function()
+ ensure()   
+ while yesorno=='n':
+  function()
+  ensure()
+
+def sure2(product):
+ product
+ ensure()   
+ while yesorno=='n':
+  product
+  ensure()
+ return product
+
+#Offers options to choose what the user would like to do
+def which():
+    global guide
+    guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Add Cost\n3. Profit\n4. Payout Per Person\n5. Check Total Cost\n"))
+#Asks the user to double check if they made the right decision
+
+sure(which)
 
 #Matches the users choice to the function 
 match guide:
+  #------------------------------------------------------------------------------------------------------------
  case "1": 
   #Takes the user input of the item,cost and quantity
   newitem=input("Input New item\n")
@@ -44,11 +60,34 @@ match guide:
     #if the cell value is equal to none aka the cell is empty the elif block while activate, otherwise it will move on
     #if the cell value is equal to none, the code will update the cell values with new items
     elif sh1.cell(i,1).value ==None:
-     print("This cell is empty",i)
      sh1.cell(i,1).value=newitem
      sh1.cell(i,2).value=newcost
      sh1.cell(i,3).value=quantity
-
+#----------------------------------------------------------------------------------------------------------
+ case "3": 
+  
+  sale=input(str('What is the name of the sold product\n'))
+  salerev=input(str('What the revenue of the sale\n'))
+  salefee=input(str('What is the fee of the sale\n'))
+  #increase the value of i so long as it is inbetween 1 and the number of row +1
+  #also only runs the for loops for the number of time between the 1 and row+1
+  for i in range (1,rows+1):
+   if sh1.cell(i,1).value==sale:
+    print("A product with the same name has been found",i)
+    for j in range (1,rows2+2):
+      print("cell ",j," is empty")
+      if sh2.cell(j,1).value==None: 
+       print("row ",j,"column 1 is empty")
+       sh2.cell(j,2).value=sale
+       #sets item cost on sheet 2
+       sh2.cell(j,5).value=sh1.cell(i,2).value 
+       #sets
+       sh2.cell(j,3).value=salerev  
+       sh2.cell(j,4).value=salefee
+       sh2.cell(j,1).value= datetime.date.today()
+       sh2.cell(j,6).value=float(salerev)-float(salefee)-float(sh2.cell(j,5).value)
+       break  
+  
 
 wb.save("Test Excel.xlsx")
 
