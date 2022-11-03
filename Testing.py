@@ -1,8 +1,8 @@
-import pip
 import openpyxl
 import datetime
 import random 
-start=input("Would you like to start the program (y/n): ")
+import numpy as np
+
 
 def ensure():
  global yesorno
@@ -80,13 +80,14 @@ def case3():
           sh2.cell(rows2+1,8).value=1
         break  
 '''
+
 #Offers options to choose what the user would like to do
 def which():
     global guide
     guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Payout\n3. Enter Sale \n4. Item sales Per Person\n5. Sales Per Person\n6. End Program\n"))
 #Asks the user to double check if they made the right decision
-start=input("Would you like to start the program (y/n): ")
-while start=='y':
+restart='y'
+while restart=='y':
   wb=openpyxl.load_workbook("Test Excel.xlsx")
   sh1=wb['Sheet1']
   sh2=wb['Daily Amazon']
@@ -94,7 +95,6 @@ while start=='y':
   rows=sh1.max_row
   rows2=sh2.max_row
   rows3=sh3.max_row
-  guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Payout\n3. Enter Sale \n4. Item sales Per Person\n5. Sales Per Person\n6. End Program\n"))
 
   sure(which)
 
@@ -300,197 +300,6 @@ while start=='y':
 
   wb.save("Test Excel.xlsx")
   restart=input("Would you like to input more. (y/n)")
-  
-input()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       
