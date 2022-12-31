@@ -1,22 +1,12 @@
 from App import *
 from tkinter import *
-import pip
-import openpyxl
-import datetime
-import random 
-import webbrowser
+import pip  
+
 # Define the functions that open new windows
 tk = Tk()
 tk.title("Inventory Management System")
 
-#Opens main excel sheet
-wb=openpyxl.load_workbook("Test Excel.xlsx")
-sh1=wb['Sheet1']
-sh2=wb['Daily Amazon']
-sh3=wb['Pay Period']
-rows=sh1.max_row
-rows2=sh2.max_row
-rows3=sh3.max_row
+
 
 # Create the buttons
 input_button = Button(tk, text="Input New Item", command=input_new_item)

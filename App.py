@@ -1,4 +1,18 @@
 from tkinter import *
+import pip
+import openpyxl
+import datetime
+import random 
+import webbrowser
+#Opens main excel sheet
+wb=openpyxl.load_workbook("Test Excel.xlsx")
+sh1=wb['Sheet1']
+sh2=wb['Daily Amazon']
+sh3=wb['Pay Period']
+rows=sh1.max_row
+rows2=sh2.max_row
+rows3=sh3.max_row
+
 class NewItem():
  def __init__(self,Name,Cost,Quantity):
     self.Name=Name
@@ -16,14 +30,36 @@ def input_new_item():
     NewitemAmount.pack()
     NewitemCost=Entry(input_window,width=50)
     NewitemCost.pack()
+
     def show_input():
      global Item
      Item=NewItem(NewitemName.get(),NewitemCost.get(),NewitemAmount.get())
      itemDes=Label(input_window,text="The name of your inputted item is "+Item.Name+"\nThe cost of your inputted item is "+Item.Cost+"\nThe quantity of the item is "+Item.Quantity)
      itemDes.pack()
+
+     for name in range(1,rows+1):
+       inventory=Label(input_window,text=sh1.cell(name,1).value)
+       inventory.pack()
+     if type(Item.Name)==str:
+      for i in range (1,rows+2):
+       if sh1.cell(i,1).value !=None and sh1.cell(i,1).value==Item.Name:
+          yesorno=Label(input_window,"This item has already been inputted\n")
+          yesorno.pack()
+          upquan=int(sh1.cell(i,3).value)
+          upquan+=Item.Quantity
+          sh1.cell(i,3).value=upquan 
+          break 
+       elif sh1.cell(i,1).value ==None:
+        sh1.cell(i,1).value=Item.Name
+        sh1.cell(i,2).value=Item.Cost
+        sh1.cell(i,3).value=Item.Quantity
+        wb.save("Test Excel.xlsx")
+        break
     Characteristics=Button(input_window,text="Press to lock in values",command=show_input)
     Characteristics.pack()
+      
 
+ 
 def payout():
     payout_window = Toplevel()
     payout_window.title("Payout")
