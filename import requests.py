@@ -87,7 +87,7 @@ def case3():
 def which():
     choice=['1','2','3','4','5','6','7','8','9','10','11']
     global guide
-    guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Payout\n3. Enter Sale \n4. Item sales Per Person\n5. Sales Per Person\n6. End Program\n7. Add Shipment\n\n9. Other Fees\n10. Current Sales\n11. Current Profits\n"))
+    guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Payout\n3. Enter Sale \n4. Item sales Per Person\n5. Sales Per Person\n6. End Program\n7. Add Shipment\n8. Refund\n9. Other Fees\n10. Current Sales\n11. Current Profits\n"))
     while guide not in choice:
       print("Please pick one of the options")
       guide=input(str("Which action would you like to perform\n1. Input New Item to Inventory\n2. Payout\n3. Enter Sale \n4. Item sales Per Person\n5. Sales Per Person\n6. End Program\n7. Add Shipment\n8. Refund\n9. Other Fees\n10. Current Sales\nCurrent Profits\n"))

@@ -2,7 +2,7 @@ from tkinter import *
 root=Tk()
 #Creates entry box
 #Width changes box width
-enter=Entry(root,width=10)
+enter=Entry(root,width=10) 
 enter.grid(row=2,column=5)
 #Put text in the box
 enter.insert(0,"Enter your name")
@@ -21,4 +21,7 @@ myLabel= Label(root,text="Hello World!")
 myLabel2= Label(root,text="Wagwan")
 myLabel.grid(row=0,column=0)
 myLabel2.grid(row=0,column=2)
+#Creates a New window
+top=Toplevel()
+lbl=Label(top,text="New Window").pack()
 root.mainloop()
