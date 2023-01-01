@@ -21,42 +21,50 @@ class NewItem():
 
 def input_new_item():
     input_window = Toplevel()
+    names=Label(input_window,text="Item Name")
+    costs=Label(input_window,text="Item Costs")
+    amounts=Label(input_window,text="Item Quantity")
+    names.grid(row=1,column=0)
+    costs.grid(row=2,column=0)
+    amounts.grid(row=3,column=0)
     input_window.title("Input New Item")
     inputs=Label(input_window,text="Input the name of the new item")
-    inputs.pack()
+    inputs.grid(row=0,column=1)
     NewitemName=Entry(input_window,width=50)
-    NewitemName.pack()
+    NewitemName.grid(row=1,column=1)
     NewitemAmount=Entry(input_window,width=50)
-    NewitemAmount.pack()
+    NewitemAmount.grid(row=2,column=1)
     NewitemCost=Entry(input_window,width=50)
-    NewitemCost.pack()
-
+    NewitemCost.grid(row=3,column=1)    
+    inventorys=Label(input_window,text="Current Inventory")
+    inventorys.grid(row=0,column=2)
+    for name in range(2,rows+1):
+       inventory=Label(input_window,text=sh1.cell(name,1).value)
+       inventory.grid(row=name-1,column=2)
     def show_input():
      global Item
      Item=NewItem(NewitemName.get(),NewitemCost.get(),NewitemAmount.get())
-     itemDes=Label(input_window,text="The name of your inputted item is "+Item.Name+"\nThe cost of your inputted item is "+Item.Cost+"\nThe quantity of the item is "+Item.Quantity)
-     itemDes.pack()
+     itemDes=Label(input_window,text="The name of your inputted item is "+Item.Name+"\nThe cost of your inputted item is "+Item.Cost+"\nThe quantity of the item is "+ Item.Quantity)
+     itemDes.grid(row=6,column=1)
 
-     for name in range(1,rows+1):
-       inventory=Label(input_window,text=sh1.cell(name,1).value)
-       inventory.pack()
      if type(Item.Name)==str:
       for i in range (1,rows+2):
        if sh1.cell(i,1).value !=None and sh1.cell(i,1).value==Item.Name:
-          yesorno=Label(input_window,"This item has already been inputted\n")
-          yesorno.pack()
+          yesorno=Label(input_window,text="This item has already been inputted\n")
+          yesorno.grid(row=7,column=1)
           upquan=int(sh1.cell(i,3).value)
-          upquan+=Item.Quantity
+          upquan+=int(Item.Quantity)
           sh1.cell(i,3).value=upquan 
+          wb.save("Test Excel.xlsx")
           break 
        elif sh1.cell(i,1).value ==None:
-        sh1.cell(i,1).value=Item.Name
-        sh1.cell(i,2).value=Item.Cost
-        sh1.cell(i,3).value=Item.Quantity
+        sh1.cell(i,1).value=(Item.Name)
+        sh1.cell(i,2).value=int(Item.Cost)
+        sh1.cell(i,3).value=int(Item.Quantity)
         wb.save("Test Excel.xlsx")
         break
     Characteristics=Button(input_window,text="Press to lock in values",command=show_input)
-    Characteristics.pack()
+    Characteristics.grid(row=4,column=1)
       
 
  
