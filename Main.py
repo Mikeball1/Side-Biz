@@ -1,6 +1,7 @@
+import pip  
 from App import *
 from tkinter import *
-import pip  
+
 
 # Define the functions that open new windows
 tk = Tk()
