@@ -68,6 +68,7 @@ def input_new_item():
     Characteristics.grid(row=4,column=1)
 #----------------------------------------------------------------------------------------
 def enter_sale():
+    inventory=[]
     payout_window = Toplevel()
     payout_window.title("Enter_sale")
     profit=Label(payout_window,text="Enter Sales")
@@ -78,11 +79,15 @@ def enter_sale():
     salenames.grid(row=1,column=0)
     salesfee.grid(row=2,column=0)
     salesrev.grid(row=3,column=0)
-    salename=Entry(payout_window,width=50)
+    for name in range(2,rows+1):
+       inventory.append(sh1.cell(name,1).value)
+    chosen=StringVar()
+    chosen.set("Click to show items available")
+    salename=OptionMenu(payout_window,chosen,*inventory)
     salename.grid(row=1,column=1)
-    salerev=Entry(payout_window,width=50)
+    salerev=Entry(payout_window,width=20)
     salerev.grid(row=2,column=1)
-    salefee=Entry(payout_window,width=50)
+    salefee=Entry(payout_window,width=20)
     salefee.grid(row=3,column=1)
     lastsales=Label(payout_window,text="The last three sales are")
     lastsales.grid(row=0,column=2)
@@ -97,14 +102,15 @@ def enter_sale():
       prevsale.grid(row=x,column=2)
     # Add space for the coder to input their code here
     def lockin():
-        Sales=NewItem(salename.get(),salerev.get(),salefee.get())
+        
+        Sales=NewItem(chosen.get(),salerev.get(),salefee.get())
         for i in range (1,rows+1):
          if sh1.cell(i,1).value==Sales.Name:
            print("A product with the same name has been found")
            sh2.cell(rows2+1,2).value=Sales.Name
            sh2.cell(rows2+1,3).value=float(Sales.Cost)
            sh2.cell(rows2+1,4).value=float(Sales.Quantity)
-           sh2.cell(rows2+1,1).value=datetime.date.today()
+           sh2.cell(rows2+1,1).value=date.today()
            #Sets item cost on sheet 2
            sh2.cell(rows2+1,5).value=sh1.cell(i,2).value
            sh2.cell(rows2+1,6).value=float(Sales.Cost)-float(Sales.Quantity)-float(sh2.cell(rows2+1,5).value)
