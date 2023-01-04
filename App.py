@@ -110,7 +110,7 @@ def enter_sale():
            sh2.cell(rows2+1,2).value=Sales.Name
            sh2.cell(rows2+1,3).value=float(Sales.Cost)
            sh2.cell(rows2+1,4).value=float(Sales.Quantity)
-           sh2.cell(rows2+1,1).value=datetime.today()
+           sh2.cell(rows2+1,1).value=date.today()
            #Sets item cost on sheet 2
            sh2.cell(rows2+1,5).value=sh1.cell(i,2).value
            sh2.cell(rows2+1,6).value=float(Sales.Cost)-float(Sales.Quantity)-float(sh2.cell(rows2+1,5).value)
@@ -126,8 +126,8 @@ def enter_sale():
                break
               if sh2.cell(k,8).value==1:
                print('This sale goes to Michael')
-               wb.save("Test Excel.xlsx")
                sh2.cell(rows2+1,7).value=1
+               wb.save("Test Excel.xlsx")
                break
                 #this if statement determines if the last time the info was inputted, if the info had who the sale belonged to
              if k==2: #sh2.cell(k,7).value!=1 and sh2.cell(k,8).value!=1:
