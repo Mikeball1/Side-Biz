@@ -77,8 +77,8 @@ def enter_sale():
     salesrev=Label(payout_window,text="Item Revenue")
     salesfee=Label(payout_window,text="Item Fee")
     salenames.grid(row=1,column=0)
-    salesfee.grid(row=2,column=0)
-    salesrev.grid(row=3,column=0)
+    salesfee.grid(row=3,column=0)
+    salesrev.grid(row=2,column=0)
     for name in range(2,rows+1):
        inventory.append(sh1.cell(name,1).value)
     chosen=StringVar()
@@ -95,14 +95,14 @@ def enter_sale():
     x=0
     for e in range(rows2,rows2-3,-1):
       x+=1
-      date=(sh2.cell(e,1).value)
-      date_only=date.strftime("%m/%d/%Y")
-      text = date_only + "-" + (sh2.cell(e,2).value) + "-" + str(sh2.cell(e,3).value) + "-" + str(sh2.cell(e,4).value) + "\n"
+      now = (sh2.cell(e,1).value)
+      date = now.date()
+      date_string = date.strftime("%B %d %Y")
+      text = date_string + "-" + (sh2.cell(e,2).value) + "-" + str(sh2.cell(e,3).value) + "-" + str(sh2.cell(e,4).value) + "\n"
       prevsale=Label(payout_window, text=text)
       prevsale.grid(row=x,column=2)
     # Add space for the coder to input their code here
     def lockin():
-        
         Sales=NewItem(chosen.get(),salerev.get(),salefee.get())
         for i in range (1,rows+1):
          if sh1.cell(i,1).value==Sales.Name:
@@ -110,7 +110,7 @@ def enter_sale():
            sh2.cell(rows2+1,2).value=Sales.Name
            sh2.cell(rows2+1,3).value=float(Sales.Cost)
            sh2.cell(rows2+1,4).value=float(Sales.Quantity)
-           sh2.cell(rows2+1,1).value=date.today()
+           sh2.cell(rows2+1,1).value=datetime.today()
            #Sets item cost on sheet 2
            sh2.cell(rows2+1,5).value=sh1.cell(i,2).value
            sh2.cell(rows2+1,6).value=float(Sales.Cost)-float(Sales.Quantity)-float(sh2.cell(rows2+1,5).value)
@@ -152,8 +152,53 @@ def enter_sale():
 def payout():
     payout_window = Toplevel()
     payout_window.title("Payout")
-    # Add space for the coder to input their code here
-    pass
+    Michaelsales=Label(payout_window,text="Michaels Sales")
+    Matthewsales=Label(payout_window,text="Matthews Sales")
+    Feesandrand=Label(payout_window,text="Fees and other random things")
+    Feesandrand.grid(row=0,column=2)
+    Michaelsales.grid(row=0,column=0)
+    Matthewsales.grid(row=0,column=1)
+    mikeprof=0
+    mattprof=0
+    mikerev=0
+    mattrev=0
+    mikefee=0
+    mattfee=0
+    feeamount=0
+    nextrow=0
+    #Searches for the last pay period cell
+    for p in range(rows2,0,-1):
+      #Once the last pay period cell is found the if statement will be entered
+      if type(sh2.cell(p,3).value)==str:
+        #start at the max number of rows and countdown until you reach the pay period cell
+        for iteams in range(rows2,p,-1):
+          #if the 8 column of the row has a number 1
+          #Enter the if statement
+          if sh2.cell(iteams,8).value==1:
+            nextrow+=1
+            mattitem=Label(payout_window,text=sh2.cell(iteams,2).value)
+            mattitem.grid(row=nextrow,column=1)
+            pass
+        for mfee in range(rows2,p,-1):
+          if sh2.cell(mfee,8).value==1:
+            mattfee+=sh2.cell(mfee,4).value
+          if sh2.cell(mfee,7).value==1:
+            mikefee+=sh2.cell(mfee,4).value
+          if float(sh2.cell(mfee,3).value)<0:
+            feeamount+=sh2.cell(mfee,3).value
+        for m in range(rows2,p,-1):
+         if sh2.cell(m,7).value==1:
+         #if the 8th column of row m contains a value of 1 then add the name of that item to the list
+          mikeprof+=sh2.cell(m,6).value
+          mikerev+=sh2.cell(m,3).value
+         if sh2.cell(m,8).value==1:
+         #if the 8th column of row m contains a value of 1 then add the name of that item to the list
+          mattprof+=sh2.cell(m,6).value
+          mattrev+=sh2.cell(m,3).value
+        break
+
+
+
 
 def item_sales_per_person():
     payout_window = Toplevel()
